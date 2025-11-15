@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# Streamlit cache
+.streamlit/
+
+# Datasets (DO NOT PUSH)
+data/raw/
+data/processed/
+
+# Model outputs
+models/*.csv
+models/*.parquet
+
+# Environment
+venv/
+env/
+
+# VS Code
+.vscode/
+
+# Windows junk
+Thumbs.db
