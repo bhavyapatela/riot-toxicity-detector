@@ -127,6 +127,6 @@ python -m streamlit run streamlit_toxicity_app.py
 <h2><a class="anchor" id="author--contact"></a>Author & Contact</h2>
 
 **Bhavya Patela** <br>
-💼 Aspiring AI Engineer & Data Scientist <br>
+💼 Data Analyst <br>
 📧 Email: bhavyapatela100@gmail.com <br>
 🔗 [LinkedIn](https://www.linkedin.com/in/bhavya-patela-526a38322/)
