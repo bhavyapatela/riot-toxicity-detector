@@ -62,6 +62,17 @@ It provides:
 - 📈 Built for AI moderation system demonstrations, gaming moderation workflows, and NLP portfolio projects
 
 ---
+
+## Toxicity Levels
+
+| Score | Level | Recommended Action |
+|---|---|---|
+| 0 – 3 | Safe | No Action |
+| 4 – 6 | Warning | Warn User |
+| 7 – 8 | Toxic | Mute User |
+| 9 – 10 | Highly Toxic | Temporary Ban |
+
+---
 <h2><a class="anchor" id="dataset"></a>Dataset</h2>
 
 - Jigsaw Toxic Comment Classification Challenge dataset from Kaggle
