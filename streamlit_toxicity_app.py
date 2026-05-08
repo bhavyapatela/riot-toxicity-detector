@@ -45,91 +45,175 @@ splash_css = f'url("{splash_uri}")' if splash_uri else "none"
 # -------------------- CSS --------------------
 RIOT_CSS = f"""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
 :root {{
-  --bg:#061016;
-  --panel:#0d1416;
-  --muted:#9aa0a6;
-  --accent:#ff4757;
+  --riot-red: #ff4655;
+  --riot-dark: #0f1923;
+  --riot-bg: #060a0e;
+  --riot-gray: #ece8e1;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --neon-glow: 0 0 15px rgba(255, 70, 85, 0.4);
 }}
 
 [data-testid="stAppViewContainer"] {{
   background:
-    linear-gradient(180deg, rgba(6,10,18,0.62), rgba(6,10,18,0.72)),
+    linear-gradient(180deg, rgba(6,10,14,0.85), rgba(6,10,14,0.95)),
     {splash_css};
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  font-family: 'Inter', sans-serif;
 }}
 
-.block-container, .stApp {{
-  color: #e6eef0 !important;
-  background: transparent !important;
-  padding-top: 110px !important;
+.block-container {{
+  padding-top: 6rem !important;
+  max-width: 1200px !important;
 }}
 
-h1 {{
-  font-size: 44px !important;
+/* Glassmorphism Card */
+.glass-card {{
+  background: var(--glass) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  transition: all 0.3s ease;
+}}
+
+/* Hero Section */
+.hero-container {{
+  text-align: center;
+  padding: 40px 20px 60px;
+  margin-bottom: 20px;
+  position: relative;
+}}
+
+.hero-title {{
+  font-size: 64px !important;
   font-weight: 800 !important;
-  color: var(--accent) !important;
-  letter-spacing: 0.6px;
+  color: var(--riot-gray) !important;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 10px !important;
 }}
 
-.card {{
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)) !important;
-  border-radius: 14px !important;
-  padding: 18px !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-  box-shadow: 0 6px 28px rgba(0,0,0,0.45) !important;
+.hero-accent {{
+  height: 4px;
+  width: 200px;
+  background: var(--riot-red);
+  margin: 0 auto 30px;
+  border-radius: 2px;
+  box-shadow: var(--neon-glow);
+  animation: accentPulse 2s infinite ease-in-out;
 }}
 
-.stButton>button {{
-  background: var(--accent) !important;
-  color: #fff !important;
-  border-radius: 10px !important;
-  padding: 8px 14px !important;
-  border: none !important;
-  font-weight: 600 !important;
+@keyframes accentPulse {{
+  0% {{ width: 150px; opacity: 0.6; }}
+  50% {{ width: 250px; opacity: 1; }}
+  100% {{ width: 150px; opacity: 0.6; }}
 }}
 
-textarea, .stTextArea>div>div>textarea {{
-  background-color: rgba(15,20,20,0.62) !important;
-  color: #e6eef0 !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-  border-radius: 8px !important;
+/* Metric Grid */
+.metric-grid {{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
 }}
 
-.small-muted {{
-  color: #cbd5e1 !important;
-  font-size:13px;
+.metric-card-wrapper {{
+  background: rgba(15, 25, 35, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease;
 }}
 
-.header-accent {{
-  height: 6px;
-  width: 180px;
-  border-radius: 8px;
-  background: linear-gradient(90deg, rgba(255,71,87,0.95), rgba(255,71,87,0.45));
+.metric-card-wrapper:hover {{
+  border-color: var(--riot-red);
+  box-shadow: var(--neon-glow);
+  transform: translateY(-5px);
+}}
+
+.metric-label {{
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #9aa0a6;
+  margin-bottom: 10px;
+}}
+
+.metric-value {{
+  font-size: 28px;
+  font-weight: 800;
+  margin: 5px 0;
+}}
+
+.metric-badge {{
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-block;
   margin-top: 10px;
 }}
 
-.logo-top-right {{
-  position: fixed;
-  top: 90px;
-  right: 10px;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+/* CTA Buttons */
+.cta-button {{
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  text-align: center;
 }}
 
-.logo-top-right img {{
-  width: 80px;
-  height: auto;
+.cta-primary {{
+  background: var(--riot-red);
+  color: white !important;
+}}
+
+.cta-primary:hover {{
+  background: #ff5c69;
+  box-shadow: 0 0 20px rgba(255, 70, 85, 0.4);
+}}
+
+.cta-secondary {{
+  background: transparent;
+  color: var(--riot-red) !important;
+  border: 1px solid var(--riot-red);
+}}
+
+.cta-secondary:hover {{
+  background: rgba(255, 70, 85, 0.1);
+  box-shadow: 0 0 15px rgba(255, 70, 85, 0.2);
+}}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {{
+  width: 8px;
+}}
+::-webkit-scrollbar-track {{
+  background: var(--riot-bg);
+}}
+::-webkit-scrollbar-thumb {{
+  background: #333;
   border-radius: 10px;
-  background: rgba(0,0,0,0.12);
-  border: 2px solid rgba(0,0,0,0.2);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-  display: block;
+}}
+::-webkit-scrollbar-thumb:hover {{
+  background: var(--riot-red);
 }}
 </style>
 """
@@ -263,321 +347,354 @@ def explain_tokens(text):
         return None
 
 
+def render_hero_section():
+    st.markdown(
+        f"""
+        <div class="hero-container">
+            <h1 class="hero-title">Riot Toxicity Detector</h1>
+            <p class="hero-subtitle">AI-powered real-time moderation system for gaming communities</p>
+            <div class="hero-accent"></div>
+            <div class="glass-card hero-desc-card">
+                Detect toxic behavior, assign moderation severity, and recommend actions instantly using NLP and Machine Learning.
+            </div>
+            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 30px;">
+                <a href="#live-detection" class="cta-button cta-primary">Run Detection</a>
+                <a href="#batch-predictions" class="cta-button cta-secondary">View Analytics</a>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+def render_metric_cards(score, label, action, confidence, color):
+    st.markdown(f"""
+        <div class="metric-grid">
+            <div class="metric-card-wrapper">
+                <div class="metric-label">Toxicity Score</div>
+                <div class="metric-value" style="color: {color}; text-shadow: 0 0 10px {color}66;">{score:.1f}</div>
+                <div style="font-size: 9px; color: #666; letter-spacing: 1px;">SCALE 0-10</div>
+            </div>
+            <div class="metric-card-wrapper">
+                <div class="metric-label">Risk Level</div>
+                <div class="metric-badge" style="background: {color}22; color: {color}; border: 1px solid {color}44;">{label}</div>
+                <div style="font-size: 9px; color: #666; margin-top: 8px; letter-spacing: 1px;">SEVERITY</div>
+            </div>
+            <div class="metric-card-wrapper">
+                <div class="metric-label">Rec. Action</div>
+                <div class="metric-value" style="font-size: 16px; color: var(--riot-gray); line-height: 1.4;">{action}</div>
+                <div style="font-size: 9px; color: #666; letter-spacing: 1px;">PROTOCOL</div>
+            </div>
+            <div class="metric-card-wrapper">
+                <div class="metric-label">Confidence</div>
+                <div class="metric-value" style="color: #4ade80;">{confidence:.1f}%</div>
+                <div style="width: 80%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 10px auto 0;">
+                    <div style="width: {confidence}%; height: 100%; background: #4ade80; border-radius: 2px; box-shadow: 0 0 8px #4ade8088;"></div>
+                </div>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
 def render_result_card(label, color, action, suggestion, toxicity_score, proba):
     meter_percent = max(0, min(100, toxicity_score * 10))
 
-    html_card = f"""
-    <div style="
-        padding:20px;
-        border-radius:16px;
-        background:#071018;
-        border:1px solid {color};
-        box-shadow:0 0 24px {color}55;
-        max-width:560px;
-        font-family:Arial, sans-serif;
-    ">
-
-        <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-
-            <div style="
-                width:130px;
-                height:130px;
-                border-radius:50%;
-                background:conic-gradient({color} {meter_percent}%, rgba(255,255,255,0.14) 0);
-                display:flex;
-                align-items:center;
-                justify-content:center;
-            ">
-
-                <div style="
-                    width:92px;
-                    height:92px;
-                    border-radius:50%;
-                    background:#071018;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    font-size:26px;
-                    font-weight:900;
-                    color:{color};
-                ">
-                    {toxicity_score:.1f}
+    html_content = f"""
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body {{ margin: 0; padding: 10px; background: transparent; font-family: 'Inter', sans-serif; color: #ece8e1; overflow: hidden; }}
+        .result-card {{
+            padding:25px;
+            border-radius:16px;
+            background: rgba(15, 25, 35, 0.9);
+            border:1px solid {color};
+            box-shadow:0 0 30px {color}22;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }}
+        .meter-container {{
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            background:conic-gradient({color} {meter_percent}%, rgba(255,255,255,0.05) 0);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position: relative;
+        }}
+        .meter-inner {{
+            width:90px;
+            height:90px;
+            border-radius:50%;
+            background:#0f1923;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:24px;
+            font-weight:900;
+            color:{color};
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+        }}
+        .content {{ flex: 1; }}
+        .label {{ color:{color}; margin:0 0 5px 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }}
+        .stats {{ display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }}
+        .stat-label {{ font-size: 10px; color: #9aa0a6; text-transform: uppercase; letter-spacing: 1px; }}
+        .stat-val {{ font-weight: 600; font-size: 15px; }}
+        .action-box {{ background:{color}15; color:{color}; padding:12px 18px; border-radius:6px; border: 1px solid {color}33; font-weight:800; font-size: 13px; letter-spacing: 1px; }}
+    </style>
+    <div class="result-card">
+        <div class="meter-container">
+            <div class="meter-inner">{toxicity_score:.1f}</div>
+        </div>
+        <div class="content">
+            <div class="label">{label} DETECTED</div>
+            <div class="stats">
+                <div>
+                    <div class="stat-label">Model Confidence</div>
+                    <div class="stat-val">{proba:.4f}</div>
                 </div>
-
+                <div>
+                    <div class="stat-label">Severity Level</div>
+                    <div class="stat-val">{toxicity_score:.1f} / 10</div>
+                </div>
             </div>
-
-            <div>
-                <h2 style="color:{color};margin:0 0 8px 0;">
-                    {label}
-                </h2>
-
-                <p style="color:#cbd5e1;margin:0;">
-                    Toxicity Score: <b>{toxicity_score:.1f}/10</b>
-                </p>
-
-                <p style="color:#cbd5e1;margin:0;">
-                    Original Probability: <b>{proba:.3f}</b>
-                </p>
-
-                <br>
-
-                <span style="
-                    background:{color};
-                    color:#071018;
-                    padding:7px 12px;
-                    border-radius:8px;
-                    font-weight:800;
-                ">
-                    {action}
-                </span>
-
-                <p style="color:#cbd5e1;margin-top:14px;">
-                    Suggestion: <b>{suggestion}</b>
-                </p>
-            </div>
-
+            <div class="action-box">PROTOCOL: {action}</div>
+            <p style="color:#9aa0a6; margin:15px 0 0; font-size: 13px;">
+                <span style="color: #666; text-transform: uppercase; font-size: 10px; font-weight: 700;">System Recommendation:</span><br>
+                {suggestion}
+            </p>
         </div>
     </div>
     """
+    components.html(html_content, height=260)
 
-    components.html(html_card, height=220)
-
-# -------------------- logo --------------------
-if logo_uri:
-    logo_html = f"<div class='logo-top-right'><img src='{logo_uri}' alt='logo' /></div>"
-else:
-    logo_html = """
-    <div class='logo-top-right'>
-        <div style='color:#9aa0a6;padding:6px 10px;background:rgba(0,0,0,0.25);border-radius:8px;font-size:12px'>
-            Add riot_logo.png to assets/
-        </div>
-    </div>
-    """
-
-st.markdown(logo_html, unsafe_allow_html=True)
+# -------------------- navbar / logo --------------------
+# Logo removed as per user request
 
 
 # -------------------- header --------------------
-st.markdown("<h1>Riot — Toxicity Detector Demo</h1>", unsafe_allow_html=True)
-st.markdown(
-    """
-    <div class='small-muted'>
-    Demo: A baseline toxicity detector using TF-IDF + Logistic Regression.
-    The model returns a toxicity score from <b>0 to 10</b> and suggests a moderation action.
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.markdown("<div class='header-accent'></div>", unsafe_allow_html=True)
-st.markdown("---")
+# render_hero_section() called in main flow below
 
 
 # -------------------- session state --------------------
 if "user_text" not in st.session_state:
     st.session_state["user_text"] = "You are trash and I hate you"
 
+if "last_result" not in st.session_state:
+    st.session_state["last_result"] = None
 
 def load_sample(text: str):
     st.session_state["user_text"] = text
 
-
 # -------------------- main layout --------------------
+# 1. Hero Section
+render_hero_section()
+st.markdown('<div id="live-detection"></div>', unsafe_allow_html=True)
+
+# 2. Dashboard Metrics (Row of 4)
+if st.session_state["last_result"]:
+    res = st.session_state["last_result"]
+    render_metric_cards(
+        res["score"],
+        res["label"],
+        res["action"],
+        res["proba"] * 100,
+        res["color"]
+    )
+else:
+    # Placeholder metrics
+    render_metric_cards(0.0, "WAITING", "N/A", 0.0, "#9aa0a6")
+
+st.write("")
+st.write("")
+
+# 3. Analysis Section
 col_main, col_right = st.columns([2, 1])
 
 with col_main:
     st.markdown(
         """
-        <div class='card'>
-            <h3>Live test your text</h3>
-            <p class='small-muted'>
-                Type or paste chat messages. The system returns a toxicity score,
-                risk level, and moderation suggestion.
+        <div class='glass-card'>
+            <h3 style="margin-top:0; color: var(--riot-gray);">Analysis Console</h3>
+            <p style="color: #9aa0a6; font-size: 14px;">
+                Enter player communication logs below for real-time toxicity scoring and moderation recommendations.
             </p>
         </div>
         """,
         unsafe_allow_html=True,
     )
+    
+    st.write("")
 
     user_text = st.text_area(
         "Enter chat / comment text",
         key="user_text",
-        height=160,
+        height=140,
+        label_visibility="collapsed",
+        placeholder="Type player message here..."
     )
 
-    st.markdown("---")
+    col_btn, col_sld = st.columns([1, 2])
+    with col_btn:
+        predict_clicked = st.button("Run Detection", key="predict_btn")
+    
+    with col_sld:
+        threshold = st.slider(
+            "Auto-Ban Threshold",
+            min_value=0.0,
+            max_value=10.0,
+            value=8.5,
+            step=0.1,
+            help="Scores above this will trigger a Temporary Ban."
+        )
 
-    threshold = st.slider(
-        "Temporary ban threshold",
-        min_value=0.0,
-        max_value=10.0,
-        value=8.5,
-        step=0.1,
-    )
-
-    col_a, col_b = st.columns(2)
-
-    with col_a:
-        if st.button("Predict", key="predict_btn"):
-            try:
-                text_to_score = st.session_state.get("user_text", "")
-
+    if predict_clicked:
+        try:
+            text_to_score = st.session_state.get("user_text", "")
+            if not text_to_score.strip():
+                st.warning("Please enter some text first.")
+            else:
                 probs = predict_proba([text_to_score])
                 proba = float(probs[0])
                 toxicity_score = proba * 10
-
                 details = get_toxicity_details(toxicity_score)
 
                 if toxicity_score >= threshold:
                     details["action"] = "TEMPORARY BAN"
                     details["suggestion"] = "Score crossed your selected ban threshold"
 
-                render_result_card(
-                    details["label"],
-                    details["color"],
-                    details["action"],
-                    details["suggestion"],
-                    toxicity_score,
-                    proba,
-                )
+                # Update session state for metrics persistence
+                st.session_state["last_result"] = {
+                    "score": toxicity_score,
+                    "label": details["label"],
+                    "action": details["action"],
+                    "proba": proba,
+                    "color": details["color"],
+                    "suggestion": details["suggestion"]
+                }
+                st.rerun()
 
-                expl = explain_tokens(text_to_score)
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")
 
-                if expl is not None:
-                    top_pos, top_neg = expl
-
-                    with st.expander("Show token contributions"):
-                        if top_pos:
-                            st.subheader("Top toxic signals")
-                            for tok, score in top_pos[:8]:
-                                st.write(f"{html.escape(tok)} — {score:.4f}")
-
-                        if top_neg:
-                            st.subheader("Top safe signals")
-                            for tok, score in top_neg[:8]:
-                                st.write(f"{html.escape(tok)} — {score:.4f}")
-
-                else:
-                    st.info("Token-level explanations not available for this model.")
-
-            except Exception as e:
-                st.error(f"Prediction failed: {e}")
-
-    with col_b:
-        st.markdown(
-            """
-            <div class='card'>
-                <h4>Quick samples</h4>
-                <p class='small-muted'>Click to load a sample into the input box.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
+    # Detailed Results (if result exists)
+    if st.session_state["last_result"]:
+        res = st.session_state["last_result"]
+        st.write("---")
+        render_result_card(
+            res["label"],
+            res["color"],
+            res["action"],
+            res["suggestion"],
+            res["score"],
+            res["proba"],
         )
 
-        samples = [
-            "You are an idiot",
-            "Great shot! nice game",
-            "I will find you and kill you",
-            "Get rekt noob",
-            "I love this community",
-            "She is a great player",
-            "Report this cheater",
-        ]
-
-        for s in samples:
-            st.button(
-                s,
-                key=f"sample_{s}",
-                on_click=load_sample,
-                args=(s,),
-            )
-
-        st.write("Current text:")
-        st.code(st.session_state.get("user_text", ""))
-
+        # Token Explanations
+        expl = explain_tokens(st.session_state["user_text"])
+        if expl is not None:
+            top_pos, top_neg = expl
+            with st.expander("🔍 View Token Contribution Analysis"):
+                st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
+                c1, c2 = st.columns(2)
+                with c1:
+                    if top_pos:
+                        st.markdown("<h4 style='color: #ef4444;'>Toxic Signals</h4>", unsafe_allow_html=True)
+                        for tok, score in top_pos[:8]:
+                            st.write(f"**{html.escape(tok)}** `{score:.4f}`")
+                with c2:
+                    if top_neg:
+                        st.markdown("<h4 style='color: #22c55e;'>Safe Signals</h4>", unsafe_allow_html=True)
+                        for tok, score in top_neg[:8]:
+                            st.write(f"**{html.escape(tok)}** `{score:.4f}`")
+                st.markdown("</div>", unsafe_allow_html=True)
 
 with col_right:
-    st.markdown("<div class='card'><h4>Model Status</h4></div>", unsafe_allow_html=True)
-
-    if tfidf is None or clf is None:
-        st.warning("TF-IDF baseline model not found. Train the baseline to use this demo.")
-    else:
-        st.success("TF-IDF baseline ready")
-        st.write("Model: TF-IDF + Logistic Regression")
-
-    if embeddings_clf is not None:
-        st.info("Embeddings-based model detected and will be used first.")
-
-    st.markdown("---")
+    # Samples Section
     st.markdown(
         """
-        <div class='small-muted'>
-            Score guide:
-            <br>0–3 → Safe
-            <br>4–6 → Warning
-            <br>7–8 → Toxic / Mute
-            <br>9–10 → Highly Toxic / Temporary Ban
+        <div class='glass-card'>
+            <h4 style="margin-top:0;">Quick Samples</h4>
+            <p style="color: #9aa0a6; font-size: 13px;">Load test cases instantly.</p>
         </div>
         """,
         unsafe_allow_html=True,
     )
+    
+    samples = [
+        "You are an idiot",
+        "Great shot! nice game",
+        "I will find you and kill you",
+        "Get rekt noob",
+        "I love this community",
+        "Report this cheater",
+    ]
 
+    for s in samples:
+        st.button(s, key=f"sample_{s}", on_click=load_sample, args=(s,))
 
-# -------------------- batch upload --------------------
-st.markdown("---")
-st.header("Batch predictions")
+    st.write("")
+    
+    # Model Status
+    st.markdown("<div class='glass-card'><h4>System Status</h4>", unsafe_allow_html=True)
+    if tfidf is None or clf is None:
+        st.error("⚠️ Backend Offline")
+    else:
+        st.success("✅ Model Active")
+        st.markdown("<div style='font-size:12px; color:#9aa0a6;'>Engine: TF-IDF + Logistic Regression</div>", unsafe_allow_html=True)
+    
+    if embeddings_clf is not None:
+        st.info("🚀 Neural Embeddings Active")
+    st.markdown("</div>", unsafe_allow_html=True)
 
-uploaded = st.file_uploader("Upload CSV column: comment_text", type=["csv"])
+# -------------------- batch predictions --------------------
+st.markdown('<div id="batch-predictions"></div>', unsafe_allow_html=True)
+st.write("")
+st.write("---")
+st.header("Batch Predictions")
 
-if uploaded is not None:
-    try:
-        df = pd.read_csv(uploaded)
+with st.container():
+    st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
+    uploaded = st.file_uploader("Upload CSV (required column: 'comment_text')", type=["csv"])
 
-        if "comment_text" not in df.columns:
-            st.error("CSV must contain a column named 'comment_text'")
+    if uploaded is not None:
+        try:
+            df = pd.read_csv(uploaded)
+            if "comment_text" not in df.columns:
+                st.error("CSV must contain a column named 'comment_text'")
+            else:
+                st.info(f"Processing {len(df)} entries...")
+                texts = df["comment_text"].astype(str).tolist()
+                probs = predict_proba(texts)
+                df["toxicity_probability"] = probs
+                df["toxicity_score"] = probs * 10
 
-        else:
-            st.info(f"Running predictions on {len(df)} rows...")
+                def batch_action(score):
+                    details = get_toxicity_details(score)
+                    if score >= threshold: return "TEMPORARY BAN"
+                    return details["action"]
 
-            texts = df["comment_text"].astype(str).tolist()
-            probs = predict_proba(texts)
+                df["action"] = df["toxicity_score"].apply(batch_action)
+                st.dataframe(df.head(100), use_container_width=True)
 
-            df["toxicity_probability"] = probs
-            df["toxicity_score"] = probs * 10
-
-            def batch_action(score):
-                details = get_toxicity_details(score)
-                if score >= threshold:
-                    return "TEMPORARY BAN"
-                return details["action"]
-
-            df["action"] = df["toxicity_score"].apply(batch_action)
-
-            st.dataframe(df.head(100))
-
-            csv = df.to_csv(index=False).encode("utf-8")
-
-            st.download_button(
-                "Download predictions CSV",
-                data=csv,
-                file_name="predictions.csv",
-                mime="text/csv",
-            )
-
-    except Exception as e:
-        st.error(f"Batch prediction failed: {e}")
-
+                csv = df.to_csv(index=False).encode("utf-8")
+                st.download_button(
+                    "Download Moderation Report",
+                    data=csv,
+                    file_name="toxicity_report.csv",
+                    mime="text/csv",
+                )
+        except Exception as e:
+            st.error(f"Batch processing failed: {e}")
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # -------------------- footer --------------------
-st.markdown("---")
+st.write("")
+st.write("---")
 st.markdown(
     """
-    <div class='small-muted'>
-        Built as a demo for a Riot-themed toxicity detector.
-        This app uses a TF-IDF + Logistic Regression baseline saved in <code>models/</code>.
-        <br><br>
-        Limitations: may produce false positives and false negatives.
-        Do not use this for automated moderation without human review.
+    <div style='text-align: center; color: #666; font-size: 12px; padding: 40px;'>
+        Riot Toxicity Detector &copy; 2026 | Powered by AI/NLP<br>
+        This is a demonstration system. Automated actions should be verified by human moderators.
     </div>
     """,
     unsafe_allow_html=True,
