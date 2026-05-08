@@ -30,17 +30,36 @@ It provides:
 ---
 <h2><a class="anchor" id="features"></a>Features</h2>
 
-- ⚡ Real-time toxicity predictions using TF–IDF + Logistic Regression
+- ⚡ Real-time toxicity prediction using TF-IDF + Logistic Regression
 
-- 🔍 Token contribution analysis (which words trigger toxicity)
+- 🎯 Toxicity scoring system from 0–10 instead of raw probabilities
 
-- 🎨 Custom Riot-themed UI with background art & animated styles
+- 🟢🟡🔴 Color-coded moderation levels
+  - Safe
+  - Warning
+  - Toxic
+  - Highly Toxic
 
-- 📤 Batch prediction mode (upload CSV → get toxicity scores instantly)
+- 🧿 Circular toxicity meter with dynamic visual feedback
 
-- 📊 Toxicity probability + recommended moderation action
+- 🛡️ AI-powered moderation suggestions
+  - Warn User
+  - Mute User
+  - Temporary Ban
 
-- 🧠 Expandable for advanced models (BERT, sentence transformers, etc.)
+- 🔍 Token contribution analysis showing which words influence toxicity
+
+- 🎨 Custom Riot Games inspired UI with immersive styling and background visuals
+
+- 📤 Batch prediction mode
+  Upload CSV files and generate toxicity scores instantly
+
+- 📊 Downloadable moderation reports and toxicity analysis
+
+- 🧠 Expandable architecture for advanced NLP models
+  (BERT, DistilBERT, Sentence Transformers, etc.)
+
+- 📈 Built for AI moderation system demonstrations, gaming moderation workflows, and NLP portfolio projects
 
 ---
 <h2><a class="anchor" id="dataset"></a>Dataset</h2>
