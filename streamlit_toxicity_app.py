@@ -70,6 +70,28 @@ RIOT_CSS = f"""
 .block-container {{
   padding-top: 6rem !important;
   max-width: 1200px !important;
+  position: relative !important;
+}}
+
+.riot-logo-container {{
+  position: absolute !important;
+  top: 1.5rem !important;
+  left: 1rem !important;
+  z-index: 99;
+}}
+
+.riot-logo-img {{
+  height: 28px !important;
+  width: auto !important;
+  border-radius: 6px !important;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px rgba(255, 70, 85, 0.3));
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}}
+
+.riot-logo-img:hover {{
+  opacity: 1;
+  filter: drop-shadow(0 0 12px rgba(255, 70, 85, 0.6));
 }}
 
 /* Glassmorphism Card */
@@ -219,6 +241,12 @@ RIOT_CSS = f"""
 """
 
 st.markdown(RIOT_CSS, unsafe_allow_html=True)
+
+if logo_uri:
+    st.markdown(
+        f'<div class="riot-logo-container"><img class="riot-logo-img" src="{logo_uri}" alt="Riot Logo"></div>',
+        unsafe_allow_html=True
+    )
 
 
 # -------------------- model paths --------------------
